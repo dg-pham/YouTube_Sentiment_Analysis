@@ -4,4 +4,5 @@ data.csv
 Pipfile
 
 app/.env
+.idea
 
