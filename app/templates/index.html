@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>YouTube Sentiment Analysis</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+<body>
+    <div class="top">
+        <div class="logo">
+            <img src="../static/imgs/YouTube.svg" alt="YouTube" id="yt">
+        </div>
+        <form action="/" method="post">
+        <input type="text" class="form__input" id="url" name="video_url" placeholder="Enter an YouTube URL" required>
+        <label for="url" class="form__label">Enter an YouTube URL</label>
+        <input type="submit" class="button" value="Analyze">
+        </form>
+    </div>
+
+    {% if summary %}
+
+    <div class="summary">
+        <div class="pie animate" style="--p:{{ summary['rating'] }};--c:lightgreen">{{ summary['rating'] }}%</div>
+        <h2>Summary</h2>
+        <p>Positive: {{ summary['positive'] }}</p>
+        <p>Negative: {{ summary['negative'] }}</p>
+        <p>Number of Comments: {{ summary['num_comments'] }}</p>
+        <p>Rating: {{ summary['rating'] }}%</p>
+    </div>
+
+    <div class="analysis">
+        <h2>Details</h2>
+    <table>
+        <tr>
+            <th>Comment</th>
+            <th>Sentiment</th>
+        </tr>
+        {% for comment, sentiment in comments %}
+        <tr>
+            <td>{{ comment }}</td>
+            <td class="sentiment">{{ sentiment }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    </div>
+
+</body>
+
+</html>

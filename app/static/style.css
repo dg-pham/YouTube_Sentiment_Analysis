@@ -1,0 +1,232 @@
+body {
+    background-color: #D8DBCE;
+    font-family: Verdana;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    }
+
+form {
+    align-self: center;
+    padding-left: 60px;
+}
+.form__input {
+    width: clamp(120px, 50vw, 420px);
+    height: 2.5rem;
+    padding: 0 1.25rem;
+    border: 1px solid $black;
+    border-radius: 20px;
+    margin: 0.625rem auto;
+    transition: all 250ms;
+    @media (min-width: 768px) {
+        width: clamp(120px, 35vw, 420px);
+    }
+
+    &:focus {
+        outline: none;
+        }
+
+    &:focus + .form__label, &:not(:placeholder-shown) + .form__label {
+        transform: translateY(-5.0rem) scale(1);
+    }
+
+    &::placeholder {
+        display: none;
+        color: transparent;
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none;
+    }
+
+    &:not(:placeholder-shown) {
+        border-top-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+.form__input:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.5);
+}
+
+.top {
+    width: 100%;
+    max-width: 768px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 2rem 1.5rem;
+    background-color: $code;
+
+    @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 50px;
+    }
+}
+
+.button{
+    width: 100px;
+    height: 50px;
+    border: none;
+    outline: none;
+    background: #2f2f2f;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#yt {
+    width: 150px;
+    height: auto;
+    padding-right: 60px;
+}
+
+#yt:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.5);
+}
+
+.form__label {
+    font-size: 1rem;
+    color: $grey;
+    display: block;
+
+    /* Moves the label on TOP of the placeholder */
+    /* You'll need to change this as needed */
+    transform: translate(1.25rem,-2.5rem);
+    transform-origin: 0 0; /* Used later for transitions */
+    transition: all 500ms;
+
+    /* Prevents users from highlighting the label. */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+
+    /* THIS PART IS IMPORTANT! */
+    /* This line prevents the label from being selected.*/
+    /* This is crucial because if this line doesn't exist, users can
+     click on the label, instead of the input field. That's bad UX! */
+    pointer-events: none;
+}
+
+.summary{
+    margin: auto;
+    text-align: center;
+    border: 5px solid #000000;
+}
+
+.analysis {
+    padding-top: 50px;
+    margin: auto;
+    text-align: center;
+}
+
+table {
+    border: black;
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 90%;
+    table-layout: fixed;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 5px solid #fff;
+    word-wrap: break-word;
+    text-align: justify;
+}
+
+th {
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.sentiment {
+    text-align: center;
+}
+
+.pie {
+    --w: 150px;
+    width: var(--w);
+    aspect-ratio: 1;
+    display: inline-grid;
+    place-content: center;
+    margin: 5px;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.pie:before{
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  inset: 0;
+  background: conic-gradient(var(--c) calc(var(--p)*1%),#0000 0);
+}
+
+@property --p{
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
+.pie {
+  --p:20;
+  --b:22px;
+  --c:darkred;
+  --w:150px;
+
+  width: var(--w);
+  aspect-ratio: 1;
+  position: relative;
+  display: inline-grid;
+  margin: 5px;
+  place-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+.pie:before,
+.pie:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+.pie:before {
+  inset: 0;
+  background:
+    radial-gradient(farthest-side,var(--c) 98%,#0000) top/var(--b) var(--b) no-repeat,
+    conic-gradient(var(--c) calc(var(--p)*1%),#0000 0);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+          mask: radial-gradient(farthest-side,#0000 calc(99% - var(--b)),#000 calc(100% - var(--b)));
+}
+.pie:after {
+  inset: calc(50% - var(--b)/2);
+  background: var(--c);
+  transform: rotate(calc(var(--p)*3.6deg)) translateY(calc(50% - var(--w)/2));
+}
+.animate {
+  animation: p 1s .5s both;
+}
+.no-round:before {
+  background-size: 0 0, auto;
+}
+.no-round:after {
+  content: none;
+}
+@keyframes p{
+  from{--p:0}
+}

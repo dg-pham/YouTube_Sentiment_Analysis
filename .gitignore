@@ -1,0 +1,7 @@
+sentiment_analysis_model.h5
+tokenizer.pickle
+data.csv
+Pipfile
+
+app/.env
+
