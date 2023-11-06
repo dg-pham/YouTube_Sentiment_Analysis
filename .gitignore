@@ -6,5 +6,3 @@ Pipfile
 app/.env
 .idea
 app/__pycache__
-
-
